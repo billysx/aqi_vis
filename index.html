@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Homework 3</title>
+		<link rel="stylesheet" type="text/css" href="css/mycss.css"/>
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+		<script type="text/javascript" src="js/lib/jquery/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/lib/d3/d3-v5.12.0/d3.min.js"></script>
+		
+	</head>
+	<body>
+		<center>
+			<h1>2014-2019主要城市环境数据</h1>		
+			<button id="btn1">北京</button> &nbsp
+			<button id="btn2">上海</button> &nbsp
+			<button id="btn3">广州</button> &nbsp
+			<button id="btn4">深圳</button> &nbsp
+		</center>
+		<br>
+
+		<script type="text/javascript">
+			window.onload = function(){
+				var obtn1=document.getElementById('btn1');
+				var obtn2=document.getElementById('btn2');
+				var obtn3=document.getElementById('btn3');
+				var obtn4=document.getElementById('btn4');
+				obtn1.onclick=function(){
+					display("beijing");
+				}
+				obtn2.onclick=function(){
+					display("shanghai");
+				}
+				obtn3.onclick=function(){
+					display("guangzhou");
+					
+				}
+				obtn4.onclick=function(){
+					display("shenzhen");
+				}
+				
+			}
+		</script>
+		<center>
+			<svg id="svg0" style="height:1200px;width:1340px">
+				<svg id="svg1"></svg>
+				<svg id="svg2"></svg>
+			</svg>
+		</center>
+		<script type="text/javascript" src="js/pixel_graph.js"></script>
+			<script type="text/javascript">
+				//display("shanghai");
+				
+				display("beijing");
+			</script>
+<!-- 		<svg id="svg1" style="height:1200px;width:1300px"></svg>
+		<script type="text/javascript" src="js/pixel_graph.js"></script>
+		<script type="text/javascript">
+			display("shanghai");
+			display("beijing");
+		</script> -->
+	</body>
+</html>

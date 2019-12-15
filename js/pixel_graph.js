@@ -38,7 +38,11 @@ function display(cityname){
 	$("#svg1").remove();
 	var svga = d3.select("#svg0")
 				.append("svg");
-				
+	svga.append("text")
+		.attr("x",300)
+		.attr("y",30)
+		.attr("font-size","35px")
+		.text(cityname)
 	svga.attr("id","svg1");
 
 	var tooltip = d3.select('body').append('div')
@@ -162,6 +166,7 @@ function display(cityname){
 					    .attr("height", 600)
 						.attr("id","aqis")
 						
+						
 					g2015.selectAll('rect')
 						.data(aqi2015)
 						.enter()
@@ -262,6 +267,7 @@ function display(cityname){
 						.attr("width",20)
 						.attr("height",2)
 						.attr("fill",colorScale[cityname]);
+
 					svgb.append("text")
 						.attr("x",lineoffsetx+350)
 						.attr("y",50+190*(time-2014)+offset[cityname])

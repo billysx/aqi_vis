@@ -130,6 +130,8 @@ function display(cityname){
 		
 		
 	// load data in
+	// time for rectangles
+	var nt=0;
 	for (let time=2014;time<=2016;time++){
 		csvstr = "data/daily/aqi"+time+"_daily.csv"
 		d3.csv(csvstr)
@@ -358,8 +360,9 @@ function display(cityname){
 							.call(axisY);
 						
 				}
+
 				for (var key in monthname){
-					n=n+1;
+					nt=nt+1;
 					var mystr = key;
 					var res = 0;
 					if (valid[mystr]!=0){
@@ -368,8 +371,8 @@ function display(cityname){
 						.attr('x', squareWidth *38 + offset15x)
 						.attr('y', squareHeight*(key%100) + offset15y)
 						.attr("height",squareHeight)
-						.data([[key,res]])
-						.attr("width",res)
+						.data([[key,res,nt]])
+						
 						.attr("fill",function(){
 							if(res==0){
 								return "white";
@@ -403,7 +406,14 @@ function display(cityname){
 						  for (let i=0;i<=500;++i){
 						  		d3.selectAll("#rect"+i).attr("opacity",1)
 						  }
-						})	
+						})
+						.attr("width",0)
+						.transition()
+						.duration(1000)
+						.delay(function(d){
+							return 100*d[2];
+						})
+						.attr("width",d=>d[1])
 					}
 				}
 				
@@ -702,7 +712,7 @@ function display(cityname){
 				
 				// along the timeline
 				for (var key in monthname){
-					n=n+1;
+					nt=nt+1;
 					var mystr = key;
 					var res = 0;
 					if (valid[mystr]!=0){
@@ -710,9 +720,8 @@ function display(cityname){
 						svga.append("rect")
 						.attr('x', squareWidth *38 + offset15x)
 						.attr('y', squareHeight*(key%100) + offset15y)
-						.data([[key,res]])
+						.data([[key,res,nt]])
 						.attr("height",squareHeight)
-						.attr("width",res)
 						.attr("fill",function(){
 							if(res==0){
 								return "white";
@@ -746,7 +755,13 @@ function display(cityname){
 						  for (let i=0;i<=500;++i){
 						  		d3.selectAll("#rect"+i).attr("opacity",1)
 						  }
-						});
+						})
+						.attr("width",0)
+						.transition()
+						.duration(1000)
+						.delay(d=>d[2]*100)
+						.attr("width",res)
+						;
 					}
 
 				}

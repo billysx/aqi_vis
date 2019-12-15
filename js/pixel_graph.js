@@ -155,7 +155,7 @@ function display(cityname){
 				
 				var squareWidth = 15;
 				var squareHeight = 15;
-				var offset15x = 150;
+				var offset15x = 100;
 				var offset15y = 10+((time-2014)*squareWidth)*12.3;
 				var g2015=svga.append("g")
 					    .attr("width", 600)
@@ -184,11 +184,13 @@ function display(cityname){
 								valid[d["yearmonth"]]+=1;
 								monthname[d["yearmonth"]]=1;
 							}
+							
+							//mark the year and the month
 							if(flag[d["yearmonth"]]==1){
 								g2015.append("text")
 									.text(d["yearmonth"])
 									.attr("font-size","13px")
-									.attr("x",d => offset15x-40)
+									.attr("x",d => offset15x+500)
 									.attr("y",squareHeight*(d["yearmonth"]%100) + offset15y+12);
 								flag[d["yearmonth"]]=0;
 							}
@@ -246,11 +248,14 @@ function display(cityname){
 					}
 				}
 				
-				// 标记月份
+				
+				
 
 				if(cityflag[cityname]==0){
 					var lineoffsetx = 900;
 					var lineoffsety = offset15y+40;
+					
+					// legend
 					svgb.append("rect")
 						.attr("x",lineoffsetx+325)
 						.attr("y",45+190*(time-2014)+offset[cityname])
@@ -263,11 +268,13 @@ function display(cityname){
 						.text(cityname)
 						
 					if(cityname=="beijing")
+					// title of the line
 						svgb.append("text")
 						.attr("x",lineoffsetx+150)
 						.attr("y",50+190*(time-2014)+20)
 						.text(time+"aqi")
-
+					
+					//line
 						dataset = [];
 						dataset.push(new Array());
 						dataset[0]["data"]=[];
@@ -352,7 +359,7 @@ function display(cityname){
 					if (valid[mystr]!=0){
 						res = Math.floor(monthaqi[mystr]/valid[mystr]);
 						svga.append("rect")
-						.attr('x', squareWidth *35 + offset15x)
+						.attr('x', squareWidth *38 + offset15x)
 						.attr('y', squareHeight*(key%100) + offset15y)
 						.attr("height",squareHeight)
 						.data([[key,res]])
@@ -479,7 +486,7 @@ function display(cityname){
 				
 				var squareWidth = 15;
 				var squareHeight = 15;
-				var offset15x = 150;
+				var offset15x = 100;
 				var offset15y = 30+((time-2014)*squareWidth)*12.3;
 				
 				
@@ -513,11 +520,13 @@ function display(cityname){
 								valid[d["yearmonth"]]+=1;
 								monthname[d["yearmonth"]]=1;
 							}
+							
+							//mark the year and month 
 							if(flag[d["yearmonth"]]==1){
 								g2015.append("text")
 									.text(d["yearmonth"])
 									.attr("font-size","13px")
-									.attr("x",d => offset15x-40)
+									.attr("x",d => offset15x+500)
 									.attr("y",squareHeight*(d["yearmonth"]%100) + offset15y+12);
 								flag[d["yearmonth"]]=0;
 							}
@@ -682,6 +691,10 @@ function display(cityname){
 						cityflag[cityname]=1;
 					}
 				}
+				
+				
+				
+				// along the timeline
 				for (var key in monthname){
 					n=n+1;
 					var mystr = key;
@@ -689,7 +702,7 @@ function display(cityname){
 					if (valid[mystr]!=0){
 						res = Math.floor(monthaqi[mystr]/valid[mystr]);
 						svga.append("rect")
-						.attr('x', squareWidth *35 + offset15x)
+						.attr('x', squareWidth *38 + offset15x)
 						.attr('y', squareHeight*(key%100) + offset15y)
 						.data([[key,res]])
 						.attr("height",squareHeight)

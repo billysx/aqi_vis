@@ -411,7 +411,7 @@ function display(cityname){
 						.transition()
 						.duration(1000)
 						.delay(function(d){
-							return 100*d[2];
+							return 50*d[2];
 						})
 						.attr("width",d=>d[1])
 					}
@@ -759,7 +759,7 @@ function display(cityname){
 						.attr("width",0)
 						.transition()
 						.duration(1000)
-						.delay(d=>d[2]*100)
+						.delay(d=>d[2]*50)
 						.attr("width",res)
 						;
 					}
